@@ -1,0 +1,48 @@
+/* markdown.css */
+
+/* Override default styles for markdown elements */
+.markdown h1 {
+  @apply text-3xl font-bold mb-4; /* Tailwind styles */
+}
+
+.markdown h2 {
+  @apply text-2xl font-semibold mb-3; /* Tailwind styles */
+}
+
+.markdown h3 {
+  @apply text-xl font-semibold mb-2; /* Tailwind styles */
+}
+
+.markdown p {
+  @apply mb-4 text-base leading-relaxed; /* Tailwind styles */
+}
+
+.markdown ul,
+.markdown ol {
+  @apply mb-4 list-disc list-inside; /* Tailwind styles for lists */
+}
+
+.markdown li {
+  @apply mb-2; /* Tailwind styles for list items */
+}
+
+.markdown blockquote {
+  @apply border-l-4 border-gray-300 pl-4 italic text-gray-600; /* Tailwind styles for blockquotes */
+  margin: 1em 0; /* Additional margin */
+}
+
+.markdown code {
+  @apply bg-gray-200 p-1 rounded; /* Tailwind styles for inline code */
+}
+
+.markdown pre {
+  @apply bg-gray-800 text-white p-4 rounded overflow-x-auto; /* Tailwind styles for block code */
+}
+
+.markdown a {
+  @apply text-blue-500 underline; /* Tailwind styles for links */
+}
+
+.markdown img {
+  @apply max-w-full h-auto rounded-lg; /* Tailwind styles for images */
+}
