@@ -16,7 +16,7 @@ function Header() {
 
       navigate("/");
 
-      console.log("Logged out successfully");
+      alert("Logged out successfully");
     });
   }
 

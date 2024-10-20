@@ -9,6 +9,7 @@ import { Input } from "../";
 
 function PostForm({ post }) {
   const [value, setValue] = useState("" || post?.content);
+  const [isCreating, setIsCreating] = useState(false);
   const [formData, setFormData] = useState({
     title: post?.title || "",
     summary: post?.summary || "",
@@ -19,26 +20,30 @@ function PostForm({ post }) {
 
   useEffect(() => {
     setFormData((prevFormData) => ({ ...prevFormData, content: value, userId: user.$id }));
-  }, [value]);
+  }, [value, user.$id]);
 
   function onSubmit(ev) {
     ev.preventDefault();
 
+    setIsCreating(true);
+
     if (post) {
       // do something
-      databasesService.updateArticle(formData, post.$id).then((res) => {
-        navigate(`/post/${res.$id}`);
-      });
+      databasesService
+        .updateArticle(formData, post.$id)
+        .then((res) => {
+          navigate(`/post/${res.$id}`);
+        })
+        .catch((error) => alert("failed to update article"))
+        .finally(() => setIsCreating(false));
     } else {
-      console.log(formData);
-
       databasesService
         .createArticle(formData)
         .then((res) => {
-          console.log(res);
           navigate(`/post/${res.$id}`);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => alert("failed to create article"))
+        .finally(() => setIsCreating(false));
     }
   }
 
@@ -87,7 +92,7 @@ function PostForm({ post }) {
         <button
           type="submit"
           className="w-full bg-blue-600 text-white font-semibold py-2 rounded-md hover:bg-blue-700 transition duration-200">
-          Create
+          {isCreating ? "Saving..." : "Save"}
         </button>
       </form>
     </div>

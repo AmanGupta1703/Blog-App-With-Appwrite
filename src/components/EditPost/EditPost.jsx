@@ -14,13 +14,10 @@ function EditPost() {
     databasesService
       .getArticle(postId)
       .then((article) => {
-        console.log(article);
-
         setPost(article);
       })
       .catch((error) => {
         alert("Failed to fetch post to edit");
-        console.log(error);
       })
       .finally(() => setLoading(false));
   }, [post, postId]);

@@ -18,7 +18,12 @@ function PostActions({ post }) {
       <Link to={`/edit-post/${post.$id}`} className="text-blue-500 hover:underline">
         Edit
       </Link>
-      <button onClick={() => handleDeletePost(post.$id)} className="text-red-500 hover:underline">
+      <button
+        onClick={(ev) => {
+          ev.preventDefault();
+          handleDeletePost(post.$id);
+        }}
+        className="text-red-500 hover:underline">
         Delete
       </button>
     </div>

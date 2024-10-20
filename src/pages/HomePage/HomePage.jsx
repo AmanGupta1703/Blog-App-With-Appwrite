@@ -16,7 +16,6 @@ function HomePage() {
         .getArticles()
         .then((articles) => {
           setError(null);
-          console.log(articles);
           setPosts(articles.documents); // Set the posts state
         })
         .catch((error) => {
